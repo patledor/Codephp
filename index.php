@@ -1,7 +1,7 @@
 <?php include "db.php"; ?>
 
 <?php
-echo "hello world";
+//echo "hello world";
 /**
  * Kinukuha ang subdomain mula sa buong hostname.
  * Halimbawa: test.pampangmarket.com -> test
@@ -118,6 +118,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)):
 
 </body>
 </html>
+
 
 
 
