@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: student-crud
+    env: php
+    buildCommand: ""
+    startCommand: ""
+    phpVersion: 8.2
+    plan: free
