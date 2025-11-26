@@ -1,0 +1,5 @@
+{
+    "name": "username/projectname",
+    "description": "Simple PHP CRUD project",
+    "require": {}
+}
