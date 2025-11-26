@@ -3,15 +3,17 @@ FROM php:8.2-apache
 
 # 2. Update at I-install ang mga PHP Extensions na kailangan mo
 # Ito ay isang halimbawa lang. Palitan o dagdagan batay sa iyong project.
+# 1. I-install ang PostgreSQL development libraries
 RUN apt-get update && apt-get install -y \
+        libpq-dev \
         libzip-dev \
         unzip \
         git \
         libpng-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# 3. I-enable ang mga PHP Extensions
-RUN docker-php-ext-install pdo pdo_mysql zip gd
+# 2. I-install ang tamang PHP extension para sa PostgreSQL
+RUN docker-php-ext-install pdo pdo_pgsql zip gd
 
 # 4. I-copy ang iyong application code sa Apache web root
 # Ipagpapalagay nito na ang lahat ng PHP files mo ay nasa root ng iyong repo.
