@@ -1,6 +1,5 @@
 <?php include "db.php"; ?>
 
-
 <?php
 
 /**
@@ -119,4 +118,5 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)):
 
 </body>
 </html>
+
 
