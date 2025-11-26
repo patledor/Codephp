@@ -1,31 +1,26 @@
 # 1. Base Image: Magsisimula tayo sa isang official PHP image na may Apache
 FROM php:8.2-apache
 
-# 2. Update at I-install ang mga PHP Extensions na kailangan mo
-# Ito ay isang halimbawa lang. Palitan o dagdagan batay sa iyong project.
-# 1. I-install ang PostgreSQL development libraries
+# 2. Update at I-install ang mga System Dependencies at PHP Extensions
+# Pinagsama ang lahat ng commands sa isang RUN instruction (mas mabilis)
 RUN apt-get update && apt-get install -y \
+        # System libraries para sa PostgreSQL, Zip, at GD
         libpq-dev \
         libzip-dev \
         unzip \
         git \
         libpng-dev \
+    # I-install ang mga PHP Extensions
+    && docker-php-ext-install pdo pdo_pgsql zip gd \
+    # Linisin ang cache para lumiit ang image size
     && rm -rf /var/lib/apt/lists/*
 
-# 2. I-install ang tamang PHP extension para sa PostgreSQL
-RUN docker-php-ext-install pdo pdo_pgsql zip gd
-
-# 4. I-copy ang iyong application code sa Apache web root
+# 3. I-copy ang iyong application code sa Apache web root
 # Ipagpapalagay nito na ang lahat ng PHP files mo ay nasa root ng iyong repo.
 COPY . /var/www/html/
 
-# 5. I-configure ang Apache (Opsyonal, ngunit karaniwang ginagamit)
-# Ito ay para siguruhin na tama ang configuration ng Apache para sa PHP.
-# Kung ang iyong entry point ay 'index.php', hindi na kailangan.
-
-# 6. Expose Port 80
+# 4. Expose Port 80
 # Ito ang port na ginagamit ng Apache. Ito ang default na aalamin ni Render.
 EXPOSE 80
 
-# 7. Start Command: Ang base image na 'php:8.2-apache' ay may sariling command
-# para simulan ang Apache, kaya wala na tayong kailangang ilagay dito.
+# (Hindi na kailangan ang comments 5 at 7, pero nilagay ko na sa final na ito.)
