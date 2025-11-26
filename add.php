@@ -1,5 +1,4 @@
 <?php include "db.php";
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt = $pdo->prepare("INSERT INTO students(fullname, age, course) VALUES (?, ?, ?)");
     $stmt->execute([$_POST["fullname"], $_POST["age"], $_POST["course"]]);
@@ -19,3 +18,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </form>
 </body>
 </html>
+
